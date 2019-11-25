@@ -1,0 +1,81 @@
+{
+    "dataset_reader": {
+        "type": "custom_conll",
+        "token_indexers": {
+            "tokens": {
+                "type": "single_id",
+                "lowercase_tokens": false
+            },
+            "token_characters": {
+                "type": "characters"
+            }
+        },
+        "input_scheme": "pos",
+        "tag_scheme": "pos",
+        "use_header": "pos",
+        "field_sep": "\t",
+        "columns_header": ["tokens", "pos"],
+        "encoding": "utf-8"
+    },
+    "train_data_path": "/home/fariz/workspace/wikiner/id-pos/train.02.tsv",
+    "validation_data_path": "/home/fariz/workspace/wikiner/id-pos/dev.02.tsv",
+    "test_data_path": "/home/fariz/workspace/wikiner/id-pos/test.02.tsv",
+    "evaluate_on_test": true,
+    "model": {
+        "type": "simple_tagger",
+        "text_field_embedder": {
+            "tokens": {
+                "type": "embedding",
+                "embedding_dim": 50,
+                "pretrained_file": "/home/fariz/workspace/wikiner/idwiki/glove/glove-idwiki.txt.gz",
+                "trainable": true
+            },
+            "token_characters": {
+                "type": "character_encoding",
+                "embedding": {
+                    "embedding_dim": 16
+                },
+                "encoder": {
+                    "type": "cnn",
+                    "embedding_dim": 16,
+                    "num_filters": 64,
+                    "ngram_filter_sizes": [2, 3],
+                    "conv_layer_activation": "relu"
+                }
+            }
+        },
+        "encoder": {
+            "type": "lstm",
+            "input_size": 178,
+            "hidden_size": 200,
+            "num_layers": 2,
+            "dropout": 0.5,
+            "bidirectional": true
+        },
+        "regularizer": [
+            [
+                "scalar_parameters",
+                {
+                    "type": "l2",
+                    "alpha": 0.1
+                }
+            ]
+        ]
+    },
+    "iterator": {
+        "type": "basic",
+        "batch_size": 32
+    },
+    "trainer": {
+        "optimizer": {
+            "type": "adam",
+            "lr": 0.001
+        },
+        "validation_metric": "+accuracy",
+        "num_serialized_models_to_keep": 3,
+        "num_epochs": 75,
+        "grad_norm": 5.0,
+        "patience": 25,
+        "cuda_device": 0
+    }
+}

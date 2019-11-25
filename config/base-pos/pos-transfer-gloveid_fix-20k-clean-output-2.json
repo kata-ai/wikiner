@@ -1,0 +1,84 @@
+{
+    "dataset_reader": {
+        "type": "custom_conll",
+        "token_indexers": {
+            "tokens": {
+                "type": "single_id",
+                "lowercase_tokens": false
+            },
+            "token_characters": {
+                "type": "characters"
+            }
+        },
+        "input_scheme": "pos",
+        "tag_scheme": "pos",
+        "use_header": "pos",
+        "field_sep": "\t",
+        "columns_header": ["tokens", "pos"],
+        "encoding": "utf-8"
+    },
+    "train_data_path": "/home/fariz/workspace/dbpedia/20k-clean1k-dbpedia.conll",
+    "test_data_path": "/home/fariz/workspace/dbpedia/dee/goldstandard-0811_conll.conll",
+    "evaluate_on_test": true,
+    "model": {
+        "type": "crf_tagger_pretrain",
+        "initial_model_file": "/home/fariz/workspace/wikiner/wikiner/temp/allenmodel/base-idn-pos-2/model.tar.gz",
+        "constraint_type": "BIO",
+        "dropout": 0.5,
+        "include_start_end_transitions": false,
+        "text_field_embedder": {
+            "tokens": {
+                "type": "embedding",
+                "embedding_dim": 50,
+                "pretrained_file": "/home/fariz/workspace/wikiner/idwiki/glove/glove-idwiki.txt.gz",
+                "trainable": false
+            },
+            "token_characters": {
+                "type": "character_encoding",
+                "embedding": {
+                    "embedding_dim": 16
+                },
+                "encoder": {
+                    "type": "cnn",
+                    "embedding_dim": 16,
+                    "num_filters": 64,
+                    "ngram_filter_sizes": [2, 3],
+                    "conv_layer_activation": "relu"
+                }
+            }
+        },
+        "encoder": {
+            "type": "lstm",
+            "input_size": 178,
+            "hidden_size": 200,
+            "num_layers": 2,
+            "dropout": 0.5,
+            "bidirectional": true
+        },
+        "regularizer": [
+            [
+                "scalar_parameters",
+                {
+                    "type": "l2",
+                    "alpha": 0.1
+                }
+            ]
+        ]
+    },
+    "iterator": {
+        "type": "basic",
+        "batch_size": 32
+    },
+    "trainer": {
+        "optimizer": {
+            "type": "adam",
+            "lr": 0.001
+        },
+        "validation_metric": "+accuracy",
+        "num_serialized_models_to_keep": 3,
+        "num_epochs": 10,
+        "grad_norm": 5.0,
+        "patience": 3,
+        "cuda_device": 0
+    }
+}

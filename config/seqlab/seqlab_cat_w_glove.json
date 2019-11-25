@@ -1,0 +1,20 @@
+{
+    "char_int": "concatenation",
+    "dev_corpus": "/home/fariz/workspace/dbpedia/dee/default_5/test-0.conll",
+    "dev_files": [
+        "dev.conll"
+    ],
+    "dirpath": "/home/fariz/workspace/dbpedia/dee",
+    "num_epochs": 10,
+    "save_path": "temp",
+    "test_corpus": "/home/fariz/workspace/dbpedia/dee/goldstandard-0811.conll",
+    "test_files": [
+        "test.conll"
+    ],
+    "train_corpus": "/home/fariz/workspace/dbpedia/dee/default_5/train-0.conll",
+    "train_files": [
+        "train.conll"
+    ],
+    "word_embedding_size": 50,
+    "pretrained_embeddings": "/home/fariz/workspace/wikiner/idwiki/glove/glove-idwiki.txt"
+}

@@ -1,0 +1,21 @@
+# input file for generating random configs
+# format is inspired by Google's Cloud Machine Learning HP Tuning YAML file
+
+num_trials: 2
+num_split: 2
+rand_params:
+- name: learning_rate
+  min_value: 0.001
+  max_value: 0.0041
+- name: dropout
+  min_value: 0.01
+  max_value: 0.76
+grid_params:
+- name: char_integration_method
+  values:
+  - attention
+  - none
+- name: decay
+  values:
+  - True
+  - False

@@ -1,0 +1,21 @@
+{
+    "c1": 0.0996163165543945,
+    "c2": 0.00384968105209854,
+    "dev_corpus": "/home/fariz/workspace/dbpedia/dee/default_5/test-0.conll",
+    "dev_files": [
+        "dev.conll"
+    ],
+    "dirpath": "/home/fariz/workspace/dbpedia/dee",
+    "num_experiments": 30,
+    "num_window_sizes": 4,
+    "retry_limit": 10,
+    "seed": 223079915,
+    "test_files": [
+        "test.conll"
+    ],
+    "train_corpus": "/home/fariz/workspace/dbpedia/dee/default_5/train-0.conll",
+    "train_files": [
+        "train.conll"
+    ],
+    "window_size": 0
+}

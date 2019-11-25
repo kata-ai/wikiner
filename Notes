@@ -1,0 +1,15 @@
+Possible Person in SPARQL attributes
+    - foaf:isPrimaryTopicOf
+    - dbpedia-owl:birthName
+    - foaf:name
+
+Wikipedia extracted annotation
+    - Title are not always linked by uri and surface form on annotations
+        + Solution: also validate title in uri form to get doc_type
+    - Some school such as SMK are not defined on dbpedia-id as ORG or LOC
+        - Gereja_Kristus_Tuhan as ORG not available on dbpedia 
+            only as a Thing http://id.dbpedia.org/page/Gereja_Kristus_Tuhan
+        - SCAT_Airlines as ORG airlines company 
+            only as a Thing http://id.dbpedia.org/page/SCAT_Airlines
+        - Ridwan_Kamil as PER OfficeHolder are not available on dbpedia-id
+            only as a thing http://id.dbpedia.org/page/Ridwan_Kamil

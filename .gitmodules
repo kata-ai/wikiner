@@ -1,0 +1,3 @@
+[submodule "ext/pacrf"]
+	path = ext/pacrf
+	url = https://github.com/Oneplus/partial-crfsuite.git
