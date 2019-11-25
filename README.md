@@ -19,7 +19,7 @@ In this research our objective is to bootstrap named entity from Wikipedia in lo
     3. Future work mention → Word sense disambiguation to reduce reversed labeling between person and place names that frequently occurs. 
         1. For example as multi-task learning between Cross-lingual Word Sense and NER to reduce ambiguity by related task regularization. (Possible future work todo)
     4. Improving method to detect the candidates of the named entity. [Future work mention]
-7.  External data/tools used in the experiment:
+7.  External data/tools used in the experiment that not in this repository:
     1. [Wikipedia extraction tool](http://medialab.di.unipi.it/wiki/Wikipedia_Extractor) — [github](https://github.com/attardi/wikiextractor)
     2. [Download linked wikipedia](https://github.com/JonathanRaiman/pywikilinks)
     3. [Annotated Wikipedia Extractors](https://github.com/jodaiber/Annotated-WikiExtractor)
@@ -41,11 +41,11 @@ There are 3 version of AllenNLP version
 1. environment-allen.yml Python version 3.7 for experiment using BiLSTM-CRF using AllenNLP library version 0.6
 2. environment-dev.yml Python version 3.6.6 for experiment with pycrf-suite (Baseline)
 3. environment-exp.yml Python version 3.6.4 for experiment on Multi-Task Sequence Labelling Language Model in [[KS18]](#[KS18])
-   1. seqlab pytorch re-implementation of https://github.com/marekrei/sequence-labeler 
+   1. Kata.ai pytorch re-implementation of https://github.com/marekrei/sequence-labeler 
 
-### helfer
+### preprocessing
 
-preprocessing the data into 2 column conll and provide the dataset statistics
+preprocess the 20k_dee.txt [[DEE16]](#[DEE16]), 20k_mdee.txt [[MDEE17]](#[MDEE17]), 20k_mdee_gazz.txt [[MDEE17]](#[MDEE17]) and the gold annotation [[GOLD14]](#[GOLD14]) from https://github.com/ialfina/ner-dataset-modified-dee into 2 column conll per sentences (separated by . using several heuristics) and provide the dataset statistics by re-tagging the data into PER, LOC, and ORG tag scheme using scripts/retag_indner.awk
 
 
 Create a virtual environment from ``environment-{allen, dev, exp}.yml`` file using conda::
@@ -57,7 +57,7 @@ To run experiments with bilm-tf [[MP18]](#[MP18]), Tensorflow is also required.
 Dataset
 =======
 
-Get the dataset from [LINK].
+Get our 1200k (1000 train, 200 validation) dataset from [Google Drive LINK]() for seed fine-tuning to reproduce the best results using small amount of data.
 
 Preprocessing for Cross-lingual Transfer
 ----------------------------------------
@@ -130,4 +130,16 @@ If you're using our code or dataset, please cite::
 Matthew E. Peters, Mark Neumann, Mohit Iyyer, Matt Gardner, Christopher Clark, Kenton Lee, and Luke Zettlemoyer. 2018. Deep contextualized word representations. In Proc. of NAACL. Retrieved from https://www.aclweb.org/anthology/N18-1202/
 #### [KS18] 
 Kurniawan, Kemal, and Samuel Louvan. "Empirical Evaluation of Character-Based Model on Neural Named-Entity Recognition in Indonesian Conversational Texts." W-NUT 2018 (2018): 85. Retrieved from https://www.aclweb.org/anthology/W18-6112/
+
+### [DEE16]
+
+Ika Alfina, Ruli Manurung, and Mohamad Ivan Fanany, "DBpedia Entities Expansion in Automatically Building Dataset for Indonesian NER", in Proceeding of 8th International Conference on Advanced Computer Science and Information Systems 2016 (ICACSIS 2016).
+
+### [MDEE17]
+
+Ika Alfina, Septiviana Savitri, and Mohamad Ivan Fanany, "Modified DBpedia Entities Expansion for Tagging Automatically NER Dataset", in Proceeding of 9th International Conference on Advanced Computer Science and Information Systems 2017 (ICACSIS 2017).
+
+### [GOLD14]
+
+Andry Luthfi, Bayu Distiawan, and Ruli Manurung, "Building an Indonesian named entity recognizer using Wikipedia and DBPedia", in the Proceesing of 2014 International Conference on Asian Language Processing (IALP)
 

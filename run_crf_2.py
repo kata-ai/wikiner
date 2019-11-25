@@ -16,16 +16,16 @@ from ingredients.crf_utils import evaluate
 from ingredients.crf_utils import get_tagged_sents_and_words
 
 SECRET = os.environ.get('SACRED_KEY', None)
-MONGOL = f'mongodb://fariz:{SECRET}@ml-tools.kata.net:27017/sacredFariz'
+MONGOL = f'mongodb://<user>:<SECRET>@<uri>:<port>/<dbname>'
 
 ex = Experiment('run_crf')
 
 client = MongoClient(MONGOL)
 
 ex.observers.append(MongoObserver.create(
-    url=MONGOL, db_name='sacredFariz'))
+    url=MONGOL, db_name='dbname'))
 
-db = client['sacredFariz']
+db = client['<dbname>']
 runs = db['runs']
 
 logger = logging.getLogger(__name__)
