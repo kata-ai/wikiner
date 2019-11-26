@@ -15,17 +15,18 @@ from ingredients.seqlab_mod import EvaluatorMod
 from ingredients.gen_configs import generate_params
 
 SECRET = os.environ.get('SACRED_KEY', None)
-MONGOL = f'mongodb://fariz:{SECRET}@ml-tools.kata.net:27017/sacredFariz'
+MONGOL = f'mongodb://<user>:<SECRET>@<uri>:<port>/<dbname>'
 
-ex = Experiment('run_seqlab')
+ex = Experiment('run_crf')
 
 client = MongoClient(MONGOL)
 
 ex.observers.append(MongoObserver.create(
-    url=MONGOL, db_name='sacredFariz'))
+    url=MONGOL, db_name='dbname'))
 
-db = client['sacredFariz']
+db = client['<dbname>']
 runs = db['runs']
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

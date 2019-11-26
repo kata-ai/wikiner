@@ -16,16 +16,16 @@ from ingredients.crf_utils import sent2labels
 from ingredients.crf_utils import evaluate
 
 SECRET = os.environ.get('SACRED_KEY', None)
-MONGOL = f'mongodb://fariz:{SECRET}@ml-tools.kata.net:27017/sacredFariz'
+MONGOL = f'mongodb://<user>:<SECRET>@<uri>:<port>/<dbname>'
 
 ex = Experiment('run_crf')
 
 client = MongoClient(MONGOL)
 
 ex.observers.append(MongoObserver.create(
-    url=MONGOL, db_name='sacredFariz'))
+    url=MONGOL, db_name='dbname'))
 
-db = client['sacredFariz']
+db = client['<dbname>']
 runs = db['runs']
 
 logger = logging.getLogger(__name__)
@@ -41,7 +41,7 @@ def default_config():
     train_files = ['train.conll']
     dev_files = ['dev.conll']
     test_files = ['test.conll']
-    dirpath = '/home/fariz/workspace/dbpedia/dee'
+    dirpath = '/home/<user>/workspace/dbpedia/dee'
     num_experiments = 30
     num_window_sizes = 4
     retry_limit = 10
@@ -50,7 +50,7 @@ def default_config():
 def cross_val_config():
     train_files = [f'train-{i}.conll' for i in range(5)]
     dev_files = [f'test-{i}.conll' for i in range(5)]
-    dirpath = '/home/fariz/workspace/dbpedia/dee'
+    dirpath = '/home/<user>/workspace/dbpedia/dee'
     num_experiments = 30
     num_window_sizes = 5
     retry_limit = 10

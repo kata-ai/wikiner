@@ -16,17 +16,18 @@ from ingredients.crf_utils import sent2stanfordlabels
 from ingredients.crf_utils import evaluate
 
 SECRET = os.environ.get('SACRED_KEY', None)
-MONGOL = f'mongodb://fariz:{SECRET}@ml-tools.kata.net:27017/sacredFariz'
+MONGOL = f'mongodb://<user>:<SECRET>@<uri>:<port>/<dbname>'
 
-ex = Experiment('run_stanford-crfsuite')
+ex = Experiment('run_crf')
 
 client = MongoClient(MONGOL)
 
 ex.observers.append(MongoObserver.create(
-    url=MONGOL, db_name='sacredFariz'))
+    url=MONGOL, db_name='dbname'))
 
-db = client['sacredFariz']
+db = client['<dbname>']
 runs = db['runs']
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
