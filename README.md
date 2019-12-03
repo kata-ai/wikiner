@@ -52,12 +52,12 @@ Create a virtual environment from ``environment-{allen, dev, exp}.yml`` file usi
 
     $ conda env create -f environment{allen, dev, exp}.yml
 
-To run experiments with bilm-tf [[MP18]](#[MP18]), Tensorflow is also required.
+To run experiments of finetuning Language model with bilm-tf [[MP18]](#[MP18]), Tensorflow is also required.
 
 Dataset
 =======
 
-Get our 1200k (1000 train, 200 validation) dataset from [Google Drive LINK]() for seed fine-tuning to reproduce the best results using small amount of data.
+Get our 1200k (1000 train, 200 validation) dataset from [Google Drive LINK](https://drive.google.com/drive/folders/1Tt20QaWJ2tZEbHizPbLBC9GeyKjejy-d?usp=sharing) for seed fine-tuning to reproduce the best results using small amount of data.
 
 Preprocessing for Cross-lingual Transfer
 ----------------------------------------
